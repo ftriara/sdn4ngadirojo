@@ -33,7 +33,7 @@ const dots = document.querySelectorAll('.slider-dot');
 let currentSlide = 0;
 
 function goToSlide(index) {
-    wrapper.style.transform = `translateX(-${index * 33.3333}%)`;
+    wrapper.style.transform = `translateX(-${index * 25}%)`;
     dots.forEach(d => d.classList.remove('active'));
     dots[index].classList.add('active');
     currentSlide = index;
@@ -45,7 +45,7 @@ dots.forEach((dot, idx) => {
 
 // Auto-rotation slider setiap 5 detik
 setInterval(() => {
-    let next = (currentSlide + 1) % 3;
+    let next = (currentSlide + 1) % 4;
     goToSlide(next);
 }, 5000);
 
@@ -169,3 +169,90 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   })();
+
+// GURU
+const track = document.getElementById('guruTrack');
+const nextBtn = document.getElementById('guruNext');
+const prevBtn = document.getElementById('guruPrev');
+
+if (track && nextBtn && prevBtn) {
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    function updateCarouselPosition() {
+        const firstCard = track.querySelector('.guru-card');
+        if (!firstCard) return;
+
+        const cardWidth = firstCard.getBoundingClientRect().width;
+        const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+        const amountToMove = currentIndex * (cardWidth + gap);
+        track.style.transform = `translateX(-${amountToMove}px)`;
+    }
+
+    function nextSlide() {
+        const totalItems = track.querySelectorAll('.guru-card').length;
+        
+        let itemsPerPage = 4;
+        if (window.innerWidth <= 992 && window.innerWidth > 640) {
+            itemsPerPage = 3;
+        } else if (window.innerWidth <= 640) {
+            itemsPerPage = 2; 
+        }
+
+        if (currentIndex < totalItems - itemsPerPage) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+        updateCarouselPosition();
+    }
+
+    function startAutoSlide() {
+        stopAutoSlide();
+        autoSlideInterval = setInterval(nextSlide, 3000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAutoSlide();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            const totalItems = track.querySelectorAll('.guru-card').length;
+            
+            let itemsPerPage = 4;
+            if (window.innerWidth <= 992 && window.innerWidth > 640) {
+                itemsPerPage = 3;
+            } else if (window.innerWidth <= 640) {
+                itemsPerPage = 2;
+            }
+            
+            currentIndex = Math.max(0, totalItems - itemsPerPage);
+        }
+        updateCarouselPosition();
+        startAutoSlide(); 
+    });
+
+    track.addEventListener('mouseenter', stopAutoSlide);
+    track.addEventListener('mouseleave', startAutoSlide);
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            currentIndex = 0;
+            updateCarouselPosition();
+            startAutoSlide(); 
+        }, 250);
+    });
+
+    updateCarouselPosition();
+    startAutoSlide();
+}
