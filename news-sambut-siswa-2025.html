@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDN 4 Ngadirojo - Sambut Siswa</title>
+    <link rel="icon" href="assets/logo.webp" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .article-container {
+        max-width: 800px;
+        margin: calc(var(--nav-h) + 40px) auto 80px auto;
+        padding: 0 20px;
+      }
+      .article-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        margin-bottom: 24px;
+        transition: transform var(--tr);
+      }
+      .article-back:hover {
+        transform: translateX(-4px);
+      }
+      .article-header {
+        margin-bottom: 32px;
+      }
+      .article-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        line-height: 1.25;
+        color: var(--text-primary);
+        margin: 12px 0;
+      }
+      .article-meta-info {
+        display: flex;
+        gap: 16px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+      .article-hero-img {
+        width: 100%;
+        max-height: 450px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 32px;
+        box-shadow: var(--shadow-lg);
+      }
+      .article-body {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-primary);
+      }
+      .article-body p {
+        margin-bottom: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-bg" aria-hidden="true"></div>
+
+    <main class="article-container">
+      <a href="index.html#berita" class="article-back">
+        <svg
+          width="18"
+          height="18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        Kembali ke Beranda
+      </a>
+
+      <article>
+        <header class="article-header">
+          <span class="news-badge">Kegiatan</span>
+          <h1 class="article-title">
+            Guru SD Negeri 4 Ngadirojo Sambut Siswa di Gerbang Sekolah
+          </h1>
+          <div class="article-meta-info">
+            <span>📅 Ngadirojo, 1 September 2025</span>
+            <span>✍️ Oleh: Admin Sekolah</span>
+          </div>
+        </header>
+
+        <video
+          src="/assets/berita-4.webm"
+          class="article-hero-img"
+          autoplay
+          loop
+          playsinline
+        ></video>
+
+        <div class="article-body">
+          <p>
+            Sebagai bagian dari pembiasaan positif di sekolah, guru SD Negeri 4
+            Ngadirojo setiap pagi menyambut kedatangan siswa di depan gerbang
+            sekolah. Kegiatan ini dilakukan dengan senyum, salam, dan sapa untuk
+            menciptakan suasana yang hangat dan menyenangkan sebelum siswa
+            memulai kegiatan belajar.
+          </p>
+
+          <p>
+            Melalui kebiasaan ini, hubungan antara guru dan siswa menjadi lebih
+            dekat serta menumbuhkan karakter santun, disiplin, dan rasa hormat.
+            Siswa pun datang ke sekolah dengan lebih semangat dan percaya diri.
+          </p>
+
+          <p>
+            Kegiatan penyambutan pagi ini merupakan salah satu upaya SD Negeri 4
+            Ngadirojo dalam mewujudkan lingkungan sekolah yang ramah, aman, dan
+            nyaman bagi seluruh peserta didik.
+          </p>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

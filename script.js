@@ -136,3 +136,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     counters.forEach(counter => counterObserver.observe(counter));
 });
+
+// Berita
+(function initNewsLoadMore() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+      const newsGrid = document.getElementById('newsGrid');
+      
+      if (!loadMoreBtn || !newsGrid) return;
+  
+      const cardsPerLoad = 3; 
+  
+      loadMoreBtn.addEventListener('click', () => {
+          const hiddenCards = Array.from(newsGrid.querySelectorAll('.news-card:not(.visible)'));
+  
+          const nextCards = hiddenCards.slice(0, cardsPerLoad);
+  
+          nextCards.forEach((card, index) => {
+              setTimeout(() => {
+                  card.classList.add('visible');
+              }, index * 80);
+          });
+  
+          if (hiddenCards.length <= cardsPerLoad) {
+              loadMoreBtn.classList.add('hidden');
+          }
+      });
+  
+      const totalHiddenInitial = newsGrid.querySelectorAll('.news-card:not(.visible)').length;
+      if (totalHiddenInitial === 0) {
+          loadMoreBtn.classList.add('hidden');
+      }
+    });
+  })();
