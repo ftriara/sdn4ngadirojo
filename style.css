@@ -13,7 +13,7 @@
     --shadow-lg:       0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05);
     --nav-h:           72px;
     --tr:              0.3s cubic-bezier(.4,0,.2,1);
-    --grid-line:       rgba(30, 58, 138, 0.03);
+    /* --grid-line:       rgba(30, 58, 138, 0.03); */
 }
 
 [data-theme="dark"] {
@@ -27,7 +27,7 @@
     --text-secondary:  #94A3B8;
     --border-color:    #334155;
     --divider-color:   #1E293B;
-    --grid-line:       rgba(56, 189, 248, 0.03);
+    /* --grid-line:       rgba(56, 189, 248, 0.03); */
 }
 
 /* ── BASE STYLES ──────────────────────────────── */
@@ -334,9 +334,14 @@ section.visible {
     text-transform: uppercase;
 }
 .id-item p {
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--text-primary);
+}
+.counter {
+    font-weight: 700;
+    color: var(--primary-color);
+    transition: color var(--tr);
 }
 .vision-mission-box {
     display: grid;
@@ -500,16 +505,269 @@ section.visible {
     color: var(--text-secondary);
 }
 
+/* Instagram Gallery */
+.instagram-container {
+    max-width: 1200px;
+    margin: 32px auto 0 auto;
+    padding: 0 16px;
+}
+.instagram-profile-header {
+    background: rgba(31, 63, 148, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.profile-info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: var(--shadow);
+}
+
+.profile-meta h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.profile-meta p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* STATISTIK */
+.profile-stats {
+    display: flex;
+    gap: 32px;
+}
+
+.stat-item {
+    font-size: 1rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.stat-item strong {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.stat-item span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+.profile-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-follow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: transform var(--tr), background var(--tr), color var(--tr);
+    box-shadow: var(--shadow);
+}
+
+.btn-ig {
+    background: #e1306c;
+    color: #fff;
+}
+
+.btn-tt {
+    background: #000000;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-follow:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+.instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+.instagram-post {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    display: block;
+    box-shadow: var(--shadow);
+    transition: transform var(--tr), box-shadow var(--tr);
+}
+.instagram-post img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--tr);
+}
+.post-icon-type {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    z-index: 2;
+}
+.post-info-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(31, 63, 148, 0.9); 
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity var(--tr);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.post-meta-details {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 14px;
+    transform: translateY(100%);
+    transition: transform var(--tr);
+}
+
+.meta-engagement {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #ffd700;
+}
+
+.post-meta-details p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    color: #e2e8f0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* PEMICU AKSI HOVER KURSOR */
+.instagram-post:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.instagram-post:hover img {
+    transform: scale(1.04);
+}
+
+.instagram-post:hover .post-info-overlay {
+    opacity: 1;
+}
+
+.instagram-post:hover .post-meta-details {
+    transform: translateY(0);
+}
+@media (max-width: 768px) {
+    .instagram-profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .profile-info-wrapper {
+        flex-direction: column;
+    }
+
+    .profile-stats {
+        width: 100%;
+        justify-content: space-around;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        padding: 12px 0;
+    }
+
+    .profile-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .btn-follow {
+        justify-content: center;
+    }
+    
+    .instagram-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+}
+
 /* ── KONTAK ────────────────────────────────────── */
 .contact-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
     gap: 48px;
+    align-items: start;
 }
 .contact-info {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
     gap: 24px;
+}
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr; 
+        gap: 32px;
+    }
+}
+@media (max-width: 640px) {
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .contact-item {
+        padding: 16px;
+        gap: 16px;
+    }
 }
 .contact-item {
     background: var(--surface-light);
@@ -519,6 +777,11 @@ section.visible {
     display: flex;
     gap: 20px;
     box-shadow: var(--shadow);
+    transition: transform var(--tr), box-shadow var(--tr);
+}
+.contact-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 .contact-item-icon {
     color: var(--primary-color);
@@ -540,7 +803,17 @@ section.visible {
     border-radius: 12px;
     box-shadow: var(--shadow);
 }
-.form-group {
+.contact-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--tr), text-decoration var(--tr);
+    font-weight: 500;
+}
+.contact-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+/* .form-group {
     margin-bottom: 20px;
 }
 .form-group label {
@@ -578,7 +851,7 @@ section.visible {
 }
 .submit-btn:hover {
     background: var(--secondary-color);
-}
+} */
 
 /* ── FOOTER ────────────────────────────────────── */
 footer {

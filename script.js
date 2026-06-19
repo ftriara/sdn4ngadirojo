@@ -96,3 +96,43 @@ const sectionObserver = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 sections.forEach(sec => sectionObserver.observe(sec));
+
+// Counter Effect 
+document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.counter');
+
+    const startCounting = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        
+        const duration = 1500; 
+        const startTime = performance.now();
+    
+        const updateNumber = (currentTime) => {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / duration, 1);
+            const currentCount = Math.floor(progress * target);
+            counter.innerText = currentCount;
+    
+            if (progress < 1) {
+                requestAnimationFrame(updateNumber);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        requestAnimationFrame(updateNumber);
+    };
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                startCounting(counter);
+                observer.unobserve(counter); 
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+});
